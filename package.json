@@ -1,0 +1,32 @@
+{
+  "name": "e-commerce-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -r esm server.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Okechukwu Obi (junicodes)",
+  "license": "MIT",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "dotenv": "^12.0.3",
+    "esm": "^3.2.25",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.6",
+    "nodemon": "^2.0.15",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "supertest": "^6.2.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
