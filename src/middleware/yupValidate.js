@@ -3,7 +3,7 @@
  * has a valid shape, else return 400 Bad Request
  * @param {*} resourceSchema is a yup schema
  */
- const validateResources = (resourceSchema) => async (req, res, next) => {
+ const yupValidate = (resourceSchema) => async (req, res, next) => {
     const resource = req.body;
     try {
       // throws an error if not valid
@@ -14,4 +14,4 @@
     }
   };
   
-  export default validateResources;
+  export default yupValidate;
