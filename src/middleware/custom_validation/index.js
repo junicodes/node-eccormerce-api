@@ -21,3 +21,7 @@ export const getAllUser_v = (req, res, next) => {
     next();
     
 }
+
+export const validateIfCategoryExist = (req, res, next) => {
+    console.log("validation for categroy exit done here");
+}

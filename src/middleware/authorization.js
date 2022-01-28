@@ -10,3 +10,15 @@ export const isOnlyAdmin = (req, res, next) => {
 
     next();
 }
+
+
+export const isOnlyClient = (req, res, next) => {
+    
+    if(req.user.isAdmin) {
+        return res.status(403).json({
+            message: "You are not permitted to access this route!"
+        });
+    }
+
+    next();
+}

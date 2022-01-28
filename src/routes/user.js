@@ -14,7 +14,7 @@ import yupValidate from "../middleware/yupValidate";
 import { getAllUser_v } from "../middleware/custom_validation"; //_v signifies _validate middleware
 
 //Import validator
-import productSchema from '../validators/updateProfile';
+import updateUserSchema from '../validators/user/updateProfile';
 
 
 /* All User */
@@ -26,7 +26,7 @@ router.get("/", authenticate, getCurrent);
 router.get("/one/:id", authenticate, getOne);
 
 //Update User 
-router.put("/update", [authenticate, yupValidate(productSchema)], update);
+router.put("/update", [authenticate, yupValidate(updateUserSchema)], update);
 
 //Update Password
 router.put("/update/password", authenticate, updatePassword);
