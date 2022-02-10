@@ -14,42 +14,27 @@ import yupValidate from "../middleware/yupValidate";
 import { getAllUser_v } from "../middleware/custom_validation"; //_v signifies _validate middleware
 
 //Import validator
-import createProductSchema from '../validators/product/createProduct';
+import {createProductSchema, validateUniqueTitle, validateUpdateUniqueTitle} from '../validators/product/createProduct';
+
+/* -----------------------------All User----------------------------------- */
+
+//Get All
+router.get("/", authenticate, getAll);
+
+//Get One Product
+router.get("/one/:id", authenticate, getOne);
 
 
-/* All User */
+/* -----------------------------Only Admin----------------------------------- */
 
-//Get Current User
-// router.get("/", authenticate, getCurrent);
 
-//Get One User
-// router.get("/one/:id", authenticate, getOne);
+//Products
+router.post("/create", [authenticate, isOnlyAdmin, upload.single('image'), yupValidate(createProductSchema), validateUniqueTitle], create);
 
-router.post("/create", [authenticate, upload.single('image'), yupValidate(createProductSchema)], create);
-
-// //Update User 
-// router.put("/update", [authenticate, yupValidate(productSchema)], update);
-
-// //Update Password
-// router.put("/update/password", authenticate, updatePassword);
+//Update Password
+router.put("/update/:id", [authenticate, isOnlyAdmin, upload.single('image'), yupValidate(createProductSchema), validateUpdateUniqueTitle], update);
 
 // //Delete User
-// router.delete("/delete", authenticate, deleteUser);
-
-
-/* ----------------------------------------------------------------
-
-/* Only Admin */
-
-//Get All User 
-// router.get("/all", [authenticate, isOnlyAdmin, getAllUser_v], getAll);
-
-// //Get All User 
-// router.get("/stats", [authenticate, isOnlyAdmin], getUserStat);
-
-// //Delete One User 
-// router.delete("/delete/:id", [authenticate, isOnlyAdmin], deleteOneUser)
-
-
+router.delete("/delete/:id", authenticate, destroy);
 
 export default router;

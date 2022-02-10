@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 
 //Controllers
-import { getCurrent, getOne, getAll, update, updatePassword, deleteUser, deleteOneUser, getUserStat } from "../controllers/userController";
+import { getCurrent, getOne, getAll, update, updatePassword, destroyAllUser, destroy, getUserStat } from "../controllers/userController";
 
 //Authentication and Authorization
 import { authenticate } from "../middleware/authenticate";
@@ -17,7 +17,7 @@ import { getAllUser_v } from "../middleware/custom_validation"; //_v signifies _
 import updateUserSchema from '../validators/user/updateProfile';
 
 
-/* All User */
+/* -----------------------------All User----------------------------------- */
 
 //Get Current User
 router.get("/", authenticate, getCurrent);
@@ -32,12 +32,10 @@ router.put("/update", [authenticate, yupValidate(updateUserSchema)], update);
 router.put("/update/password", authenticate, updatePassword);
 
 //Delete User
-router.delete("/delete", authenticate, deleteUser);
+router.delete("/delete", authenticate, destroyAllUser);
 
 
-/* ----------------------------------------------------------------
-
-/* Only Admin */
+/* -----------------------------Only Admin----------------------------------- */
 
 //Get All User 
 router.get("/all", [authenticate, isOnlyAdmin, getAllUser_v], getAll);
@@ -46,7 +44,7 @@ router.get("/all", [authenticate, isOnlyAdmin, getAllUser_v], getAll);
 router.get("/stats", [authenticate, isOnlyAdmin], getUserStat);
 
 //Delete One User 
-router.delete("/delete/:id", [authenticate, isOnlyAdmin], deleteOneUser)
+router.delete("/delete/:id", [authenticate, isOnlyAdmin], destroy)
 
 
 
