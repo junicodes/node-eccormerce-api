@@ -4,8 +4,6 @@ import CryptoJS from "crypto-js";
 import jwt from "jsonwebtoken";
 
 
-
-
 export const register = async (req, res) => {
 
     try {
